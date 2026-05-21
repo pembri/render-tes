@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head><title>Tes Backend</title></head>
 <body>
-    <h1>Tes Koneksi Backend</h1>
-    <button onclick="panggil('NODE')">Tes Node.js</button>
-    <button onclick="panggil('PYTHON')">Tes Python</button>
-    <button onclick="panggil('PHP')">Tes PHP</button>
+    <h1>Tes Backend Python</h1>
+    <button onclick="panggilPython()">Tes Python</button>
     <p id="hasil">Hasil: -</p>
 
     <script>
-        async function panggil(tipe) {
-            const urls = {
-                'NODE': 'https://node-backend-xxx.onrender.com/api/tes',
-                'PYTHON': 'https://python-backend-xxx.onrender.com/api/tes',
-                'PHP': 'https://php-backend-xxx.onrender.com/api/tes'
-            };
+        async function panggilPython() {
+            // GANTI URL ini dengan link Vercel kamu nanti
+            const url = "https://my-python-backend.vercel.app/api/tes";
+            
             try {
-                const res = await fetch(urls[tipe]);
+                const res = await fetch(url);
                 const data = await res.json();
                 document.getElementById('hasil').innerText = data.pesan;
             } catch (e) {
-                document.getElementById('hasil').innerText = "Gagal: " + e;
+                document.getElementById('hasil').innerText = "Error: " + e;
             }
         }
     </script>
