@@ -1,23 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Tester</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #0f0f0f; color: #0f0; }
+    textarea { width: 100%; height: 200px; background: #111; color: #0f0; border: 1px solid #0f0; }
+    button { padding: 10px 20px; background: #0f0; color: black; border: none; font-weight: bold; }
+    pre { background: #111; padding: 15px; overflow: auto; }
+  </style>
+</head>
 <body>
-    <h1>Tes Backend Python</h1>
-    <button onclick="panggilPython()">Tes Python</button>
-    <p id="hasil">Hasil: -</p>
+  <h1>🧪 Python Tester</h1>
+  <textarea id="code" placeholder="Ketik kode Python di sini...">print("Hello from Python!")</textarea><br><br>
+  <button onclick="runCode()">▶ Run Code</button>
+  
+  <h2>Output:</h2>
+  <pre id="output">Tekan tombol Run...</pre>
 
-    <script>
-        async function panggilPython() {
-            // GANTI URL ini dengan link Vercel kamu nanti
-            const url = "https://python-test-fyon.vercel.app";
-            
-            try {
-                const res = await fetch(url);
-                const data = await res.json();
-                document.getElementById('hasil').innerText = data.pesan;
-            } catch (e) {
-                document.getElementById('hasil').innerText = "Error: " + e;
-            }
+  <script>
+    const API_URL = "https://nama-project-vercel-mu.vercel.app/api/run"; // GANTI INI
+
+    async function runCode() {
+      const code = document.getElementById('code').value;
+      const outputEl = document.getElementById('output');
+      
+      outputEl.textContent = "Running...";
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code })
+        });
+
+        const data = await res.json();
+        
+        if (data.success) {
+          outputEl.textContent = data.output || "(No output)";
+          if (data.error) outputEl.textContent += "\nError:\n" + data.error;
+        } else {
+          outputEl.textContent = "ERROR:\n" + data.error;
         }
-    </script>
+      } catch (err) {
+        outputEl.textContent = "Gagal koneksi ke server: " + err.message;
+      }
+    }
+  </script>
 </body>
 </html>
