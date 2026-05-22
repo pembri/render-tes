@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloudflare + Replit Python</title>
+  <title>Cloudflare + Vercel Python</title>
 
   <style>
     *{
@@ -40,10 +40,6 @@
       cursor:pointer;
     }
 
-    button:hover{
-      opacity:.9;
-    }
-
     #hasil{
       margin-top:30px;
       width:100%;
@@ -60,7 +56,7 @@
 </head>
 <body>
 
-<h1>Cloudflare → Replit Python</h1>
+<h1>Cloudflare → Vercel Python</h1>
 
 <button onclick="tesApi()">
 Tes Sambungan API
@@ -80,9 +76,9 @@ async function tesApi(){
 
   try{
 
-    // GANTI DENGAN URL REPLIT KAMU
+    // GANTI DENGAN URL VERCEL KAMU
     const response = await fetch(
-      "https://python-test--ahmadsupembri.replit.app/api"
+      "https://python-varcel.vercel.app/api"
     );
 
     const data = await response.json();
