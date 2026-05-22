@@ -1,101 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloudflare + Vercel Python</title>
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    body{
-      background:#0f0f0f;
-      color:white;
-      font-family:Arial,sans-serif;
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      padding:20px;
-    }
-
-    h1{
-      margin-bottom:20px;
-      color:#00ff88;
-    }
-
-    button{
-      padding:14px 24px;
-      border:none;
-      border-radius:12px;
-      background:#00ff88;
-      color:#000;
-      font-size:18px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    #hasil{
-      margin-top:30px;
-      width:100%;
-      max-width:600px;
-      background:#1a1a1a;
-      border-radius:12px;
-      padding:20px;
-      white-space:pre-wrap;
-      word-wrap:break-word;
-      border:1px solid #333;
-      color:#00ff88;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTAudio Cloud - YouTube to MP3 Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <h1><span class="red-text">YT</span>Audio Cloud</h1>
+        </div>
+        <div class="hamburger" id="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/suport">Support</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<h1>Cloudflare → Vercel Python</h1>
+    <main>
+        <section class="converter-section">
+            <h2>Konversi YouTube ke Audio</h2>
+            <p>Paste link YouTube di bawah ini untuk mengunduh format MP3, WAV, dll.</p>
+            
+            <div id="input-container">
+                <input type="text" id="youtube-url" placeholder="Contoh: https://youtu.be/uIEHyZuHTlc?si=ur3IvWMDyKBE_6lY" autocomplete="off">
+                <button id="generate-btn">Generate</button>
+            </div>
 
-<button onclick="tesApi()">
-Tes Sambungan API
-</button>
+            <div id="loading-container" class="hidden">
+                <div class="spinner"></div>
+                <p>Sedang memproses URL... Mohon tunggu.</p>
+            </div>
 
-<div id="hasil">
-Belum ada request
-</div>
+            <div id="result-container" class="hidden">
+                <div class="video-info">
+                    <img id="video-thumbnail" src="" alt="Thumbnail Video">
+                    <h3 id="video-title">Judul Video</h3>
+                </div>
+                <div id="download-options">
+                    </div>
+                <button id="reset-btn" class="outline-btn">Generate Ulang</button>
+            </div>
+        </section>
 
-<script>
+        <section class="features-section">
+            <div class="feature-card">
+                <h3>🚀 Gratis & Unlimited</h3>
+                <p>Unduh audio sebanyak yang Anda mau tanpa batasan dan tanpa biaya sepeser pun.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Cepat & Mudah</h3>
+                <p>Proses konversi super cepat. Cukup paste link dan klik generate.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 Aman & Privasi</h3>
+                <p>Sistem kami aman dan kami tidak menyimpan data pribadi atau riwayat unduhan Anda.</p>
+            </div>
+        </section>
+    </main>
 
-async function tesApi(){
+    <footer>
+        <p>&copy; 2026 YTAudio Cloud by Pembri</p>
+    </footer>
 
-  const hasil = document.getElementById("hasil");
-
-  hasil.innerHTML = "Loading API...";
-
-  try{
-
-    // GANTI DENGAN URL VERCEL KAMU
-    const response = await fetch(
-      "https://python-varcel.vercel.app/api"
-    );
-
-    const data = await response.json();
-
-    hasil.innerHTML =
-      JSON.stringify(data, null, 2);
-
-  }catch(err){
-
-    hasil.innerHTML =
-      "Gagal connect:\n\n" + err;
-
-  }
-
-}
-
-</script>
-
+    <script src="script.js"></script>
+    <script src="download.js"></script>
 </body>
 </html>
