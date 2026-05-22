@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoTitle = document.getElementById('video-title');
 
     // URL Vercel Python API Anda
-    const API_URL = 'https://python-varcel.vercel.app/api';
+    const API_URL = 'https://project-7oswp.vercel.app/api';
 
     // Aksi ketika tombol "Generate" diklik
     generateBtn.addEventListener('click', async () => {
